@@ -3,7 +3,7 @@
 
 
 ## disclaimer
-So this is a fork of a fork. (slang800)[https://github.com/slang800] and (Dan Eden)[https://github.com/daneden] deserve credit for their work on this, but I will be making some potentially substantial changes here.
+So this is a fork of a fork. [slang800](https://github.com/slang800) and [Dan Eden](https://github.com/daneden) deserve credit for their work on this, but I will be making some potentially substantial changes here.
 
 `animate-styl` is a bunch of cool, fun, and cross-browser animations for you to use in your projects. Great for emphasis, home pages, sliders, and general just-add-water-awesomeness.
 
