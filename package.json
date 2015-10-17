@@ -1,4 +1,23 @@
 {
-  "name": "animate-stylus",
-  "version": "3.0.0",
+  "name": "animate-styl",
+  "version": "1.0.0",
+  "description": "A port of a port of animate.css to Stylus",
+  "main": "./lib/animate.js",
+  "keywords": [
+    "animation",
+    "animate.css",
+    "stylus",
+    "Stylus",
+    "css"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "stylus": "0.52.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "6.0.3",
+    "gulp": "3.9.0",
+    "gulp-postcss": "6.0.1",
+    "gulp-stylus": "2.1.0"
+  }
 }
