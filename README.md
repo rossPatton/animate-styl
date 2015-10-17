@@ -15,7 +15,8 @@ By default animate-styl doesn't auto generate all the keyframe animations and cl
 ## Using the config object
 
 ```javascript
-// i am using gulp here because i'm most familiar with it, but you can use whatever build system you want here
+// i am using gulp here because i'm most familiar with it, 
+// but you can use whatever build system you want here
 gulp.task( 'stylus', function() {
   return gulp.src( './styl/main.styl' )
     .pipe( stylus( {
