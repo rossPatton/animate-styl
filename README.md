@@ -1,6 +1,8 @@
 # Animate Styl (now on NPM!)
 *Just-add-water CSS animation*
 
+`npm i animate-styl`
+
 
 ## disclaimer
 So this is a fork of a fork. [slang800](https://github.com/slang800) and [Dan Eden](https://github.com/daneden) deserve credit for their work on this, but I will be making some potentially substantial changes here.
