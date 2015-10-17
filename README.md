@@ -1,45 +1,88 @@
 # Animate Styl (now on NPM!)
 *Just-add-water CSS animation*
 
+
+## disclaimer
+So this is a fork of a fork. (slang800)[https://github.com/slang800] and (Dan Eden)[https://github.com/daneden] deserve credit for their work on this, but I will be making some potentially substantial changes here.
+
 `animate-styl` is a bunch of cool, fun, and cross-browser animations for you to use in your projects. Great for emphasis, home pages, sliders, and general just-add-water-awesomeness.
 
+
 ## Usage
-To use animate-stylus in your website, just `@require animate` and reference the animations you want in your style-sheet. That's it! You've got a CSS animated element. Super!
+By default animate-styl doesn't auto generate all the keyframe animations and classes. There are 2 ways to tell animate-styl what animations you want to include in your project.
+
+
+## Using the config object
+
+```javascript
+gulp.task( 'stylus', function() {
+  return gulp.src( './styl/main.styl' )
+    .pipe( stylus( {
+      use: animate({
+        all: false, // generate all classes by default, like pulling in the entire animate.css file
+        base: true, // generates base .animated class
+        attentionSeekers: true,
+        base: true,
+        bling: true,
+        bomb: true,
+        bouncingEntrances: true,
+        bouncingExits: true,
+        fadingEntrances: true,
+        fadingExits: true,
+        flippers: true,
+        lightspeed: true,
+        magic: true,
+        math: true,
+        perspective: true,
+        rotate: true,
+        rotatingEntrances: true,
+        rotatingExits: true,
+        slidingEntrances: true,
+        slidingExits: true,
+        specials: true,
+        zoomingEntrances: true,
+        zoomingExits: true,
+      }),
+    } ) )
+    .pipe( gulp.dest( './css' ) )
+} )
+```
+
+and then in your stylus:
 
 ```stylus
 @require 'animate'
+// your animation code is auto generated here
 
-.your-element
-  animation-name: bounceOutLeft
-  animation-duration: 3s
-  animation-delay: 2s
-  animation-iteration-count: infinite
+.bounce-in
+  animation-name: bounceIn
 ```
 
-You can do a whole bunch of other stuff with animate-stylus when you combine it with jQuery or add your own CSS rules. Dynamically add animations using jQuery with ease:
+The above is just to show all the options. Ideally you'd only pass in what you need, or, if you want everything, you can just pass in `all: true`.
+
+
+## Include/Exclude Animations without the config object
+There's no need to make custom builds because with Stylus you can import everything you want, and nothing you don't.
+
+For example, if you only use the `slideInDown` animation then you don't `@require` the whole library - just `@require 'animate-stylus/sliders/slideInDown'`. Or, if you want all the sliders, you can `@require 'animate-stylus/sliders/*'`. See the Stylus Docs for an explanation of [file globbing](http://learnboost.github.io/stylus/docs/import.html#file-globbing).
+
+HOWEVER, I feel like the ideal way to use this is to use the config object as part of your build step. Do whatever you want though.
+
+Example of this method:
 
 ```stylus
-.bounce-out-left
-  animation-name: bounce
-  animation-duration: 1s
-  animation-fill-mode: both
-```
-
-```javascript
-.your-element.className += ' bounce-out-left'
+@require 'animate/lib/bling/*
+// all bling animations here, but nothing else
 ```
 
 
-##Include/Exclude Animations
-There's no need to make custom builds because with Stylus you can import everything you want, and nothing you don't. For example, if you only use the `slideInDown` animation then don't `@import` the whole library - just `@import 'animate-stylus/sliders/slideInDown'`. Or, if you want all the sliders, you can `@import 'animate-stylus/sliders/*'`. See the Stylus Docs for an explanation of [file globbing](http://learnboost.github.io/stylus/docs/import.html#file-globbing).
-
-##Vendor Prefixes
+## Vendor Prefixes
 I've left the code unprefixed so you can support whatever browsers you're targeting without having them chosen for you. I recommend using [nib](http://visionmedia.github.io/nib/) or [auto-prefixer](https://github.com/ai/autoprefixer) to add the prefixes.
 
-##Adding Animations with Class Names
-First off, making classes like `.bounce` is [unsemantic](http://css-tricks.com/semantic-class-names/) because it states the style (which is the job of CSS), rather than describing what the element is. Your HTML is for content, and your CSS is for style - thus, class names (a feature of HTML) should describe the content, not the style.
 
-But I suppose you don't really care about proper semantics, or you wouldn't be trying to do this. So, if you're really determined, you can add this:
+## Adding Animations with Class Names
+I will be making a config option to auto-generate these based on your ideal naming convention, but until then here's a way you can do it yourself:
+
 
 ```stylus
 //list of animations that we are using
@@ -51,21 +94,12 @@ animations = (bounce slideInDown slideOutUp)
 
 for animation_name in animations
   .{animation_name}
-    @extends .animated
     animation-name: animation_name
 ```
 
 And then adding animations to elements with class names will work:
 
 ```html
-<div class="bounce">This is bouncing</div>
+<div class='bounce'>This is bouncing</div>
 ```
 
-##What if I don't use Stylus?
-Well, I feel very sorry for you because you are missing out on something great. But, you can still use this animation library - just compile `index.styl` and you'll get a big CSS file (called `index.css`) that you can use:
-
-```bash
-$ npm install stylus -g
-$ cd directory/this/repo/is/in
-$ stylus ./
-```
