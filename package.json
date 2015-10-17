@@ -1,6 +1,6 @@
 {
   "name": "animate-styl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A port of a port of animate.css to Stylus",
   "main": "./lib/animate.js",
   "keywords": [
